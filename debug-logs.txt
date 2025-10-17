@@ -1,0 +1,888 @@
+INFO | 2025-10-17T10:16:48Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/config/init.lua:469 | Configuration complete
+DEBUG | 2025-10-17T10:16:48Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/config/init.lua:470 | User config {
+  adapters = { {
+      build_position = <function 1>,
+      build_spec = <function 2>,
+      discover_positions = <function 3>,
+      filter_dir = <function 4>,
+      is_test_file = <function 5>,
+      jest_test_discovery = true,
+      name = "neotest-jest",
+      results = <function 6>,
+      root = <function 7>,
+      <metatable> = {
+        __call = <function 8>
+      }
+    } },
+  benchmark = {
+    enabled = true
+  },
+  consumers = {},
+  default_strategy = "integrated",
+  diagnostic = {
+    enabled = true,
+    severity = 1
+  },
+  discovery = {
+    concurrent = 16,
+    enabled = true
+  },
+  floating = {
+    max_height = 0.6,
+    max_width = 0.6,
+    options = {}
+  },
+  highlights = {
+    adapter_name = "NeotestAdapterName",
+    border = "NeotestBorder",
+    dir = "NeotestDir",
+    expand_marker = "NeotestExpandMarker",
+    failed = "NeotestFailed",
+    file = "NeotestFile",
+    focused = "NeotestFocused",
+    indent = "NeotestIndent",
+    marked = "NeotestMarked",
+    namespace = "NeotestNamespace",
+    passed = "NeotestPassed",
+    running = "NeotestRunning",
+    select_win = "NeotestWinSelect",
+    skipped = "NeotestSkipped",
+    target = "NeotestTarget",
+    test = "NeotestTest",
+    unknown = "NeotestUnknown",
+    watching = "NeotestWatching"
+  },
+  icons = {
+    child_indent = "│",
+    child_prefix = "├",
+    collapsed = "─",
+    expanded = "╮",
+    failed = "",
+    final_child_indent = " ",
+    final_child_prefix = "╰",
+    non_collapsible = "─",
+    notify = "",
+    passed = "",
+    running = "",
+    running_animated = { "/", "|", "\\", "-", "/", "|", "\\", "-" },
+    skipped = "",
+    test = "",
+    unknown = "",
+    watching = ""
+  },
+  jump = {
+    enabled = true
+  },
+  log_level = 1,
+  output = {
+    enabled = true,
+    open_on_run = "short"
+  },
+  output_panel = {
+    enabled = true,
+    open = "botright split | resize 15"
+  },
+  projects = {
+    <metatable> = {
+      __index = <function 9>
+    }
+  },
+  quickfix = {
+    enabled = true,
+    open = false
+  },
+  run = {
+    enabled = true
+  },
+  running = {
+    concurrent = true
+  },
+  state = {
+    enabled = true
+  },
+  status = {
+    enabled = true,
+    signs = true,
+    virtual_text = false
+  },
+  strategies = {
+    integrated = {
+      height = 40,
+      width = 120
+    }
+  },
+  summary = {
+    animated = true,
+    count = true,
+    enabled = true,
+    expand_errors = true,
+    follow = true,
+    mappings = {
+      attach = "a",
+      clear_marked = "M",
+      clear_target = "T",
+      debug = "d",
+      debug_marked = "D",
+      expand = { "<CR>", "<2-LeftMouse>" },
+      expand_all = "e",
+      help = "?",
+      jumpto = "i",
+      mark = "m",
+      next_failed = "J",
+      output = "o",
+      prev_failed = "K",
+      run = "r",
+      run_marked = "R",
+      short = "O",
+      stop = "u",
+      target = "t",
+      watch = "w"
+    },
+    open = "botright vsplit | vertical resize 50"
+  },
+  watch = {
+    enabled = true,
+    symbol_queries = {
+      elixir = <function 10>,
+      go = "        ;query\n        ;Captures imported types\n        (qualified_type name: (type_identifier) @symbol)\n        ;Captures package-local and built-in types\n        (type_identifier)@symbol\n        ;Captures imported function calls and variables/constants\n        (selector_expression field: (field_identifier) @symbol)\n        ;Captures package-local functions calls\n        (call_expression function: (identifier) @symbol)\n      ",
+      haskell = "        ;query\n        ;explicit import\n        (import_name (variable) @symbol)\n        ;symbols that may be imported implicitly\n        ((type) @symbol)\n        (qualified (name) @symbol)\n        (apply (variable) @symbol)\n        ((constructor) @symbol)\n        ((operator) @symbol)\n      ",
+      java = "        ;query\n        ;captures imported classes\n        (import_declaration\n            (scoped_identifier name: ((identifier) @symbol))\n        )\n      ",
+      javascript = '  ;query\n  ;Captures named imports\n  (import_specifier name: (identifier) @symbol)\n  ;Captures default import\n  (import_clause (identifier) @symbol)\n  ;Capture require statements\n  (variable_declarator \n  name: (identifier) @symbol\n  value: (call_expression (identifier) @function  (#eq? @function "require")))\n  ;Capture namespace imports\n  (namespace_import (identifier) @symbol)\n',
+      lua = '        ;query\n        ;Captures module names in require calls\n        (function_call\n          name: ((identifier) @function (#eq? @function "require"))\n          arguments: (arguments (string) @symbol))\n      ',
+      python = "        ;query\n        ;Captures imports and modules they're imported from\n        (import_from_statement (_ (identifier) @symbol))\n        (import_statement (_ (identifier) @symbol))\n      ",
+      ruby = '        ;query\n        ;rspec - class name\n        (call\n          method: (identifier) @_ (#match? @_ "^(describe|context)")\n          arguments: (argument_list (constant) @symbol )\n        )\n\n        ;rspec - namespaced class name\n        (call\n          method: (identifier)\n          arguments: (argument_list\n            (scope_resolution\n              name: (constant) @symbol))\n        )\n      ',
+      rust = "        ;query\n        ;submodule import\n        (mod_item\n          name: (identifier) @symbol)\n        ;single import\n        (use_declaration\n          argument: (scoped_identifier\n            name: (identifier) @symbol))\n        ;import list\n        (use_declaration\n          argument: (scoped_use_list\n            list: (use_list\n                [(scoped_identifier\n                   path: (identifier)\n                   name: (identifier) @symbol)\n                 ((identifier) @symbol)])))\n        ;wildcard import\n        (use_declaration\n          argument: (scoped_use_list\n            path: (identifier)\n            [(use_list\n              [(scoped_identifier\n                path: (identifier)\n                name: (identifier) @symbol)\n                ((identifier) @symbol)\n              ])]))\n      ",
+      swift = "        ;query\n        ;import\n        (simple_identifier) @symbol\n      ",
+      tsx = '  ;query\n  ;Captures named imports\n  (import_specifier name: (identifier) @symbol)\n  ;Captures default import\n  (import_clause (identifier) @symbol)\n  ;Capture require statements\n  (variable_declarator \n  name: (identifier) @symbol\n  value: (call_expression (identifier) @function  (#eq? @function "require")))\n  ;Capture namespace imports\n  (namespace_import (identifier) @symbol)\n',
+      typescript = '  ;query\n  ;Captures named imports\n  (import_specifier name: (identifier) @symbol)\n  ;Captures default import\n  (import_clause (identifier) @symbol)\n  ;Capture require statements\n  (variable_declarator \n  name: (identifier) @symbol\n  value: (call_expression (identifier) @function  (#eq? @function "require")))\n  ;Capture namespace imports\n  (namespace_import (identifier) @symbol)\n'
+    }
+  }
+}
+INFO | 2025-10-17T10:16:58Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:34 | Starting child process
+INFO | 2025-10-17T10:16:58Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:37 | Parent address: localhost:53985
+INFO | 2025-10-17T10:16:58Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:43 | Starting child process with command: /usr/local/Cellar/neovim/0.11.4/bin/nvim --embed --headless -n -u NONE
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:117 | Setting rtp in subprocess /Users/anon/.config/nvim,/usr/local/etc/xdg/nvim,/etc/xdg/nvim,/Users/anon/.local/share/nvim/site,/usr/local/share/nvim/site,/usr/share/nvim/site,/usr/local/Cellar/neovim/0.11.4/share/nvim/runtime,/usr/local/Cellar/neovim/0.11.4/lib/nvim,/usr/share/nvim/site/after,/usr/local/share/nvim/site/after,/Users/anon/.local/share/nvim/site/after,/etc/xdg/nvim/after,/usr/local/etc/xdg/nvim/after,/Users/anon/.config/nvim/after,/Users/anon/.local/share/nvim/lazy/neotest,/Users/anon/.local/share/nvim/lazy/nvim-nio,/Users/anon/.local/share/nvim/lazy/plenary.nvim,/Users/anon/.local/share/nvim/lazy/nvim-treesitter
+INFO | 2025-10-17T10:16:58Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:381 | Initialising client
+INFO | 2025-10-17T10:16:58Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting starting event
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event starting
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...al/share/nvim/lazy/neotest/lua/neotest/lib/file/init.lua:225 | Path separator: /
+INFO | 2025-10-17T10:16:58Z+0200 | ...al/share/nvim/lazy/neotest/lua/neotest/adapters/init.lua:18 | Found 1 adapters for directory /Users/anon/projects/nvim/neotest-patch-fix-example
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...al/share/nvim/lazy/neotest/lua/neotest/adapters/init.lua:19 | Adapters: { {
+    adapter = {
+      build_position = <function 1>,
+      build_spec = <function 2>,
+      discover_positions = <function 3>,
+      filter_dir = <function 4>,
+      is_test_file = <function 5>,
+      jest_test_discovery = true,
+      name = "neotest-jest",
+      results = <function 6>,
+      root = <function 7>,
+      <metatable> = {
+        __call = <function 8>
+      }
+    },
+    root = "/Users/anon/projects/nvim/neotest-patch-fix-example"
+  } }
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:117 | Setting rtp in subprocess /Users/anon/.config/nvim,/usr/local/etc/xdg/nvim,/etc/xdg/nvim,/Users/anon/.local/share/nvim/site,/usr/local/share/nvim/site,/usr/share/nvim/site,/usr/local/Cellar/neovim/0.11.4/share/nvim/runtime,/usr/local/Cellar/neovim/0.11.4/lib/nvim,/usr/share/nvim/site/after,/usr/local/share/nvim/site/after,/Users/anon/.local/share/nvim/site/after,/etc/xdg/nvim/after,/usr/local/etc/xdg/nvim/after,/Users/anon/.config/nvim/after,/Users/anon/.local/share/nvim/lazy/neotest,/Users/anon/.local/share/nvim/lazy/nvim-nio,/Users/anon/.local/share/nvim/lazy/plenary.nvim,/Users/anon/.local/share/nvim/lazy/nvim-treesitter,/Users/anon/.local/share/nvim/lazy/neotest-jest
+INFO | 2025-10-17T10:16:58Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:282 | Searching /Users/anon/projects/nvim/neotest-patch-fix-example for test files
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...al/share/nvim/lazy/neotest/lua/neotest/lib/file/init.lua:23 | Reading file: /Users/anon/projects/nvim/neotest-patch-fix-example/package.json
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:298 | Found { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example",
+    name = "neotest-patch-fix-example",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example",
+    type = "dir"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      name = "parametricDescribeAndTest.test.ts",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "file"
+    } } }
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...hare/nvim/lazy/neotest/lua/neotest/client/state/init.lua:54 | New positions at ID /Users/anon/projects/nvim/neotest-patch-fix-example
+INFO | 2025-10-17T10:16:58Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting discover_positions event
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener status for event discover_positions
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener diagnostic for event discover_positions
+INFO | 2025-10-17T10:16:58Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:328 | Discovering files with 16 workers
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener watch for event discover_positions
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event discover_positions
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener state for event discover_positions
+INFO | 2025-10-17T10:16:58Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:302 | Parsing /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:179 | Waiting for result 1
+DEBUG | 2025-10-17T10:16:58Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:130 | Result registed for callback 1
+WARN | 2025-10-17T10:16:59Z+0200 | ...zy/neotest-jest/lua/neotest-jest/parameterized-tests.lua:212 | {
+  numFailedTestSuites = 0,
+  numFailedTests = 0,
+  numPassedTestSuites = 0,
+  numPassedTests = 0,
+  numPendingTestSuites = 1,
+  numPendingTests = 4,
+  numRuntimeErrorTestSuites = 0,
+  numTodoTests = 0,
+  numTotalTestSuites = 1,
+  numTotalTests = 4,
+  openHandles = {},
+  snapshot = {
+    added = 0,
+    didUpdate = false,
+    failure = false,
+    filesAdded = 0,
+    filesRemoved = 0,
+    filesRemovedList = {},
+    filesUnmatched = 0,
+    filesUpdated = 0,
+    matched = 0,
+    total = 0,
+    unchecked = 0,
+    uncheckedKeysByFile = {},
+    unmatched = 0,
+    updated = 0
+  },
+  startTime = 1760689019115,
+  success = true,
+  testResults = { {
+      assertionResults = { {
+          ancestorTitles = { "greeting Alice" },
+          failing = false,
+          failureDetails = {},
+          failureMessages = {},
+          fullName = "greeting Alice should greet using Hello!",
+          invocations = 1,
+          location = {
+            column = 5,
+            line = 9
+          },
+          numPassingAsserts = 0,
+          retryReasons = {},
+          startAt = 1760689019480,
+          status = "pending",
+          title = "should greet using Hello!"
+        }, {
+          ancestorTitles = { "greeting Alice" },
+          failing = false,
+          failureDetails = {},
+          failureMessages = {},
+          fullName = "greeting Alice should greet using Hi!",
+          invocations = 1,
+          location = {
+            column = 5,
+            line = 9
+          },
+          numPassingAsserts = 0,
+          retryReasons = {},
+          startAt = 1760689019481,
+          status = "pending",
+          title = "should greet using Hi!"
+        }, {
+          ancestorTitles = { "greeting Bob" },
+          failing = false,
+          failureDetails = {},
+          failureMessages = {},
+          fullName = "greeting Bob should greet using Hello!",
+          invocations = 1,
+          location = {
+            column = 5,
+            line = 9
+          },
+          numPassingAsserts = 0,
+          retryReasons = {},
+          startAt = 1760689019481,
+          status = "pending",
+          title = "should greet using Hello!"
+        }, {
+          ancestorTitles = { "greeting Bob" },
+          failing = false,
+          failureDetails = {},
+          failureMessages = {},
+          fullName = "greeting Bob should greet using Hi!",
+          invocations = 1,
+          location = {
+            column = 5,
+            line = 9
+          },
+          numPassingAsserts = 0,
+          retryReasons = {},
+          startAt = 1760689019481,
+          status = "pending",
+          title = "should greet using Hi!"
+        } },
+      coverage = vim.empty_dict(),
+      endTime = 1760689019494,
+      message = "",
+      name = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      startTime = 1760689019494,
+      status = "skipped",
+      summary = ""
+    } },
+  wasInterrupted = false
+}
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:308 | Found { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    name = "parametricDescribeAndTest.test.ts",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 0, 0, 12, 0 },
+    type = "file"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+      is_parameterized = true,
+      name = "greeting %s",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 4, 0, 11, 2 },
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        is_parameterized = true,
+        name = "should greet using %s!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        range = { 5, 2, 10, 4 },
+        test_name_range = { 8, 6, 8, 28 },
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice",
+      name = "greeting Alice",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob",
+      name = "greeting Bob",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } } }
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...hare/nvim/lazy/neotest/lua/neotest/client/state/init.lua:54 | New positions at ID /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+INFO | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting discover_positions event
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener status for event discover_positions
+INFO | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:510 | Initialisation finished in 0.875 seconds
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener diagnostic for event discover_positions
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener watch for event discover_positions
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event discover_positions
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener state for event discover_positions
+INFO | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting test_file_focused event
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener diagnostic for event test_file_focused
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event test_file_focused
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener status for event test_file_focused
+INFO | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting started event
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event started
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    name = "parametricDescribeAndTest.test.ts",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 0, 0, 12, 0 },
+    type = "file"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+      is_parameterized = true,
+      name = "greeting %s",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 4, 0, 11, 2 },
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        is_parameterized = true,
+        name = "should greet using %s!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        range = { 5, 2, 10, 4 },
+        test_name_range = { 8, 6, 8, 28 },
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice",
+      name = "greeting Alice",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob",
+      name = "greeting Bob",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+    is_parameterized = true,
+    name = "greeting %s",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 4, 0, 11, 2 },
+    type = "namespace"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+      is_parameterized = true,
+      name = "should greet using %s!",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 5, 2, 10, 4 },
+      test_name_range = { 8, 6, 8, 28 },
+      type = "test"
+    } } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+    is_parameterized = true,
+    name = "should greet using %s!",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 5, 2, 10, 4 },
+    test_name_range = { 8, 6, 8, 28 },
+    type = "test"
+  } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    name = "parametricDescribeAndTest.test.ts",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 0, 0, 12, 0 },
+    type = "file"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+      is_parameterized = true,
+      name = "greeting %s",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 4, 0, 11, 2 },
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        is_parameterized = true,
+        name = "should greet using %s!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        range = { 5, 2, 10, 4 },
+        test_name_range = { 8, 6, 8, 28 },
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice",
+      name = "greeting Alice",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob",
+      name = "greeting Bob",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    name = "parametricDescribeAndTest.test.ts",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 0, 0, 12, 0 },
+    type = "file"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+      is_parameterized = true,
+      name = "greeting %s",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 4, 0, 11, 2 },
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        is_parameterized = true,
+        name = "should greet using %s!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        range = { 5, 2, 10, 4 },
+        test_name_range = { 8, 6, 8, 28 },
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice",
+      name = "greeting Alice",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob",
+      name = "greeting Bob",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    name = "parametricDescribeAndTest.test.ts",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 0, 0, 12, 0 },
+    type = "file"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+      is_parameterized = true,
+      name = "greeting %s",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 4, 0, 11, 2 },
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        is_parameterized = true,
+        name = "should greet using %s!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        range = { 5, 2, 10, 4 },
+        test_name_range = { 8, 6, 8, 28 },
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice",
+      name = "greeting Alice",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob",
+      name = "greeting Bob",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    name = "parametricDescribeAndTest.test.ts",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 0, 0, 12, 0 },
+    type = "file"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+      is_parameterized = true,
+      name = "greeting %s",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 4, 0, 11, 2 },
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        is_parameterized = true,
+        name = "should greet using %s!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        range = { 5, 2, 10, 4 },
+        test_name_range = { 8, 6, 8, 28 },
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice",
+      name = "greeting Alice",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob",
+      name = "greeting Bob",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    name = "parametricDescribeAndTest.test.ts",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 0, 0, 12, 0 },
+    type = "file"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+      is_parameterized = true,
+      name = "greeting %s",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 4, 0, 11, 2 },
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        is_parameterized = true,
+        name = "should greet using %s!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        range = { 5, 2, 10, 4 },
+        test_name_range = { 8, 6, 8, 28 },
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice",
+      name = "greeting Alice",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob",
+      name = "greeting Bob",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:156 | BEFORE /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:158 | { {
+    id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    name = "parametricDescribeAndTest.test.ts",
+    path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    range = { 0, 0, 12, 0 },
+    type = "file"
+  }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s",
+      is_parameterized = true,
+      name = "greeting %s",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      range = { 4, 0, 11, 2 },
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        is_parameterized = true,
+        name = "should greet using %s!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        range = { 5, 2, 10, 4 },
+        test_name_range = { 8, 6, 8, 28 },
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice",
+      name = "greeting Alice",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Alice::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } }, { {
+      id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob",
+      name = "greeting Bob",
+      path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+      type = "namespace"
+    }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hello!",
+        name = "should greet using Hello!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } }, { {
+        id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting Bob::should greet using Hi!",
+        name = "should greet using Hi!",
+        path = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+        source_pos_id = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts::greeting %s::should greet using %s!",
+        type = "test"
+      } } } }
+ERROR | 2025-10-17T10:16:59Z+0200 | ...ocal/share/nvim/lazy/neotest/lua/neotest/client/init.lua:159 | AFTER /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...hare/nvim/lazy/neotest/lua/neotest/client/state/init.lua:85 | Setting positions to running /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts
+INFO | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting run event
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener diagnostic for event run
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener status for event run
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event run
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener state for event run
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...al/share/nvim/lazy/neotest/lua/neotest/lib/file/init.lua:39 | Writing file: /var/folders/ny/gjq25fmx79z7fdzqs4wzbp000000gn/T/nvim.anon/PZyAWQ/0.json
+INFO | 2025-10-17T10:16:59Z+0200 | ...nvim/lazy/neotest/lua/neotest/client/strategies/init.lua:36 | Starting process neotest-jest:/Users/anon/projects/nvim/neotest-patch-fix-example-/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts with strategy integrated
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...nvim/lazy/neotest/lua/neotest/client/strategies/init.lua:37 | Strategy spec {
+  command = { "/Users/anon/projects/nvim/neotest-patch-fix-example/node_modules/.bin/jest", "--config=/Users/anon/projects/nvim/neotest-patch-fix-example/jest.config.js", "--no-coverage", "--verbose", "--json", "--outputFile=/var/folders/ny/gjq25fmx79z7fdzqs4wzbp000000gn/T/nvim.anon/PZyAWQ/0.json", "--testNamePattern=.*", "--forceExit", "--testLocationInResults", "\\/Users\\/anon\\/projects\\/nvim\\/neotest\\-patch\\-fix\\-example\\/parametricDescribeAndTest.test.ts" },
+  context = {
+    file = "/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts",
+    results_path = "/var/folders/ny/gjq25fmx79z7fdzqs4wzbp000000gn/T/nvim.anon/PZyAWQ/0.json",
+    stop_stream = <function 1>
+  },
+  strategy = {
+    height = 40,
+    width = 120
+  },
+  stream = <function 2>
+}
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...hare/nvim/lazy/neotest/lua/neotest/client/state/init.lua:70 | New results for adapter neotest-jest:/Users/anon/projects/nvim/neotest-patch-fix-example
+INFO | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting results event
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener output_panel for event results
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener status for event results
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener quickfix for event results
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener diagnostic for event results
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener output for event results
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event results
+DEBUG | 2025-10-17T10:16:59Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener state for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...hare/nvim/lazy/neotest/lua/neotest/client/state/init.lua:70 | New results for adapter neotest-jest:/Users/anon/projects/nvim/neotest-patch-fix-example
+INFO | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting results event
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener output_panel for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener status for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener quickfix for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener diagnostic for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...e/nvim/lazy/neotest/lua/neotest/consumers/diagnostic.lua:55 | Setting diagnostics for /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts {}
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener output for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener state for event results
+INFO | 2025-10-17T10:17:00Z+0200 | ...nvim/lazy/neotest/lua/neotest/client/strategies/init.lua:56 | Process for position neotest-jest:/Users/anon/projects/nvim/neotest-patch-fix-example-/Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts exited with code 0
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...nvim/lazy/neotest/lua/neotest/client/strategies/init.lua:58 | Output of process  /var/folders/ny/gjq25fmx79z7fdzqs4wzbp000000gn/T/nvim.anon/PZyAWQ/1
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...al/share/nvim/lazy/neotest/lua/neotest/lib/file/init.lua:23 | Reading file: /var/folders/ny/gjq25fmx79z7fdzqs4wzbp000000gn/T/nvim.anon/PZyAWQ/0.json
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...hare/nvim/lazy/neotest/lua/neotest/client/state/init.lua:70 | New results for adapter neotest-jest:/Users/anon/projects/nvim/neotest-patch-fix-example
+INFO | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting results event
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener output_panel for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener status for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...hare/nvim/lazy/neotest/lua/neotest/client/state/init.lua:70 | New results for adapter neotest-jest:/Users/anon/projects/nvim/neotest-patch-fix-example
+INFO | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:48 | Emitting results event
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener output_panel for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener quickfix for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener diagnostic for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...e/nvim/lazy/neotest/lua/neotest/consumers/diagnostic.lua:55 | Setting diagnostics for /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts {}
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener output for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener state for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...al/share/nvim/lazy/neotest/lua/neotest/lib/file/init.lua:23 | Reading file: /var/folders/ny/gjq25fmx79z7fdzqs4wzbp000000gn/T/nvim.anon/PZyAWQ/1
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener status for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener quickfix for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener diagnostic for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...e/nvim/lazy/neotest/lua/neotest/consumers/diagnostic.lua:55 | Setting diagnostics for /Users/anon/projects/nvim/neotest-patch-fix-example/parametricDescribeAndTest.test.ts {}
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener output for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener summary for event results
+DEBUG | 2025-10-17T10:17:00Z+0200 | ...are/nvim/lazy/neotest/lua/neotest/client/events/init.lua:50 | Calling listener state for event results
+INFO | 2025-10-17T10:17:02Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:21 | Closing child channel
+INFO | 2025-10-17T10:17:02Z+0200 | ...l/share/nvim/lazy/neotest/lua/neotest/lib/subprocess.lua:47 | Child process exited
