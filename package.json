@@ -1,0 +1,21 @@
+{
+  "name": "spec",
+  "version": "1.0.0",
+  "description": "neotest-jest spec",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-typescript": "^7.27.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^18.0.3",
+    "jest": "^30.2.0"
+  }
+}
